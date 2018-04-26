@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+
+.oneColFixCtr {
+    font: 100% Verdana, Arial, Helvetica, sans-serif;
+    /*background: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #000000;
+    background-image:url("/css/images/15shapka.jpg");
+    background-repeat:no-repeat;
+    background-position: top;*/
+background-image:url('/css/images/top_head_line.gif') repeat-x scroll center top #fff !important;
+    
+}
+
+.t_menu a{
+    letter-spacing:-0.09em;/*-0.049em;*/
+}
+.news h1{
+    padding-bottom:0px;
+}
+.news_block{
+    padding-top:21px;
+    padding-bottom:8px;
+}
+.copyright{
+    padding-top:29px;
+}
+.bottom_menu a, .bottom_menu span{
+    vertical-align:bottom;
+    line-height: 30px;
+}
+.bottom_menu{
+padding-top:14px;
+}
+
+.photo_nav_next{
+    position:relative; !important
+}
+.photo_nav_prev{
+    position:relative;!important
+ }
+ 
+.img_1{ 
+     margin-left:-2px;
+    position:relative;
+    visibility:visible;
+ }
+.line_i{
+    padding:5px 0 15px 19px;
+}
+.news h1{    
+    margin-left:-1px;
+    padding-top:26px;    
+}
+.content_header{
+    padding-top:35px;
+}
+.line{
+    height:10px;
+}
+.footer_div{
+    padding-top:33px;
+}
+.logo_footer{
+    /*padding-top:19px;*/
+}
+.rounded_frame .rf_l{
+    font-size:12px;
+    }
+content h1{    
+    padding:4px 0px 6px 0px;    
+}
+.graybox textarea{
+    float: left;    
+}
+.graybox .lable.right{
+    float:left;
+    clear:none;
+    padding-right:0px;
+}
+table.phone_item input:text, table.phone_spec input:text{
+    text-align:left;
+    margin-left:0px;
+    padding-left:0px;
+}
+.phone_item input.second, .phone_block input.second{
+    width:30px;
+}
+div.warning_border.textarea_w, div.no_warrning.textarea_w{height:122px;}
+a.top_main_menu_active{
+  padding:8px 12px 9px;
+}
+.top_main_menu_active{
+  padding:8px 12px 9px;
+}
+table.phone_item input.list_phone_compare {
+  margin-bottom: 0;
+}
+
+

@@ -1,0 +1,15 @@
+
+
+
+function campaigns_list_submit() {
+    var el = document.getElementById("campaign_year");
+    if (el != null && el.selectedIndex>0) {
+        document.CampaignsList.is_year.value=2;
+        document.CampaignsList.year.value=el.value;
+    }
+    el = document.getElementById("is_valid_input");
+    if (el != null && !el.checked) {
+        document.CampaignsList.is_valid.value=2;
+    } 
+    document.CampaignsList.submit();
+}
