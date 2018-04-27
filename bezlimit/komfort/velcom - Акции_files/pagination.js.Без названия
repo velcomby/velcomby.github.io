@@ -1,0 +1,194 @@
+
+
+
+function commonFormSubmit(chunk){
+    try {
+        var activFormId = document.getElementById("active_form_id_div");
+        if (activFormId){
+            var submitForm = document.getElementById(activFormId.innerHTML);
+            if ( submitForm && submitForm.chunk){
+                submitForm.chunk.value = chunk;
+                submitForm.onsubmit(); 
+                return;
+            }
+        } 
+    } catch (err){
+    }
+}
+// USED FOR PAGINATION CLICK HANDLING
+var paginationChunkProvider;
+
+function setProvider(func){
+ paginationChunkProvider = func;
+}
+function paginationChunkClick(chunk){
+ if (paginationChunkProvider){
+    paginationChunkProvider(chunk);
+ } else {
+    commonFormSubmit(chunk);
+ }
+    return false;
+}
+ 
+function productChunk(chunk){
+    var link = new Array();
+    link.push('<a href="#" onClick="paginationChunkClick(');
+    link.push(chunk);
+    link.push(');return false;">');
+    link.push(chunk);
+    link.push('</a>');
+    return link.join('');
+}
+function productPagination(curr, last, func){
+        var page = 1;
+        var total = 1;
+        try {
+            page = parseInt(curr); 
+            page = (page>0)?page: 1;  
+        } catch(err){
+            page = 1;
+        }
+        try {
+            total = parseInt(last); 
+            total = (total >0)?total : 1; 
+        } catch(err){
+            total = 1;
+        }
+        if (total < 2) return;
+if(func){
+setProvider(func);
+}
+        var prev =0;
+        if(page>1){
+          prev = page-1;
+        }
+        var next = 0;
+        if (page < total){
+          next = page+1;
+        }
+        var prev_link='';
+        var next_link='';
+       if (prev > 0 ){
+          prev_link = '<a href="#" onClick="paginationChunkClick('+prev+')" class="prev_art_link">&nbsp;</a>';
+          
+        }
+        if (next > 0 ){
+          next_link = '<a href="#" onClick="paginationChunkClick('+next+')" class="next_art_link">&nbsp;</a>';
+          
+        }
+       
+        var divs = new Array(13);
+  
+        var i=1;
+                                      // CASE 1 less then 13 pages
+        if (total<12){
+             while (i<=total) {
+                if (page == i){
+                    divs[i] = "<b>"+page+"</b>";
+                } else {
+                    divs[i] = productChunk(i);
+                }
+                i++;
+            }
+            document.getElementById('pages').innerHTML = prev_link+divs.join(" ")+next_link;
+            return;                             // END OF CASE 1
+        }    
+                                             // CASE 2 current <=4 
+        
+        
+        if (page < 7){
+            i=1;
+            while (i<page) {
+                divs[i] = productChunk(i);
+                i++;
+            }    
+            divs[page] = "<b>"+page+"</b>";
+            var max = page+5;
+            i++;
+            while (i<max) {
+                divs[i] = productChunk(i);
+                i++;
+            }
+            divs[i]    = "<a href='#'>...</a>";
+            divs[++i] = productChunk(total);    
+                 
+            document.getElementById('pages').innerHTML = prev_link+divs.join(" ")+next_link;
+            return;   
+        }
+        divs[1] = productChunk(1);
+        var min = page-4;
+        if (min > 3) {
+            divs[2] = "<a href='#'>...</a>";
+        } else {
+            divs[2] = productChunk(2);
+        }
+        var j=3;
+        var min = page-4;
+        var max = page+5;
+        max = (max < total)?max:total;
+        for (i=min; i<max; i++, j++){
+            if (page==i){
+                divs[j] = "<b>"+page+"</b>";
+            } else {
+                divs[j] = productChunk(i);
+            }
+        }
+        if ( (total - max) >1) {
+            divs[i] = "<a href='#'>...</a>";
+            divs[++i] = productChunk(total);
+        } else {
+            if (total == max) {
+                if (total == page) {
+                  divs[++i] = "<b>"+page+"</b>";
+                } else { 
+                 divs[++i] = productChunk(total);
+                }     
+       } else {
+                if (i == page) {
+                  divs[i] = "<b>"+page+"</b>";
+                } else { 
+                 divs[i] = productChunk(i);
+                } 
+                i++;
+                if (i == page) {
+                  divs[i] = "<b>"+page+"</b>";
+                } else { 
+                 divs[i] = productChunk(i);
+                } 
+            }    
+        } 
+        document.getElementById('pages').innerHTML = prev_link + divs.join(" ") + next_link; 
+}
+// USED FOR PAGINATION  CREATION
+function productChunkLinks(pagination_div, func){
+    var div  =  document.getElementById(pagination_div);
+    var current = 0;
+    try {
+        var last = div.innerHTML;
+        try {
+            current = parseInt( document.getElementById('chunk_div').innerHTML );
+        } catch (err){
+            current =1;
+            alert ("productChunkLinks " +err + " chunk is not defined, '1' used instead");
+        }
+        var paging_div = document.getElementById('pages');
+        if (last>1){
+            productPagination(current, last, func);
+            if(paging_div){
+              var hr_div = document.createElement("div");
+              hr_div.setAttribute("class", "hr");
+              hr_div.setAttribute("className", "hr"); // for ie6,7
+              hr_div.setAttribute("id", "created_by_pagination");
+              var parent = paging_div.parentNode;
+              parent.parentNode.insertBefore(hr_div , parent);
+            }
+           
+        } else {
+          if(paging_div ){
+            paging_div.parentNode.removeChild(paging_div);
+          }
+        }
+    } catch (err){
+    }
+    
+}

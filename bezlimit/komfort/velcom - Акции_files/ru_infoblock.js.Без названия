@@ -1,0 +1,18 @@
+
+
+//document.write('<div class="left_block_info_phones shift_cyrcle_left_block_info_phones" style="line-height: 15px"><a href="http://velcom.by/ru/private/support/ask-question">задать вопрос</a></div><div class="h5_left_block_info_phones"></div><div class="left_block_info_phones grey_left_block_info_phones">наши консультанты<div class="h5_left_block_info_phones"></div><div class="kons_left_block_info_phones vk_kons_left_block_info_phones"><a rel="nofollow" href="http://vk.com/y_koleda" target=_blank>Вконтакте</a></div><div class="kons_left_block_info_phones fb_kons_left_block_info_phones"><a rel="nofollow" href="https://www.facebook.com/eugenia.rubinchik" target=_blank>Facebook</a></div><div class="kons_left_block_info_phones od_kons_left_block_info_phones"><a rel="nofollow" href="http://www.odnoklassniki.ru/alesya.miloshuk" target=_blank>Одноклассники</a></div><div><a href="http://velcom.by/ru/about/contacts" class="grey_left_block_info_phones font_left_block_info_phones">все контакты</a></div>');
+
+var WidthWindow = 640;
+var HeightWindow = 550;
+var leftPx = ( screen.availWidth - WidthWindow );
+var topPx = ( screen.availHeight - HeightWindow -50); 
+var ChatWindow;
+
+
+function openWinWebCallBack() {
+    ChatWindow=window.open('', 'ChatWindow', 'Toolbar=0, Scrollbars=1, Resizable=0, Width='+WidthWindow+', resize=no, Height='+HeightWindow+', top='+topPx+', left='+leftPx+'');
+	ChatWindow.location = 'http://velcom.by/ru/webcallback/webcallback';
+    ChatWindow.focus();
+}
+
+document.write('<div class="left_block_info_phones shift_cyrcle_left_block_info_phones webcallback_link" style="line-height: 15px; margin-bottom: 8px;"><span style="text-decoration: underline; cursor: pointer;" onclick="openWinWebCallBack(); return false;">заказать звонок</span></div><div class="left_block_info_phones shift_cyrcle_left_block_info_phones" style="line-height: 15px"><a href="http://velcom.by/ru/private/support/ask-question">задать вопрос</a></div><div class="h5_left_block_info_phones"></div><div class="left_block_info_phones grey_left_block_info_phones">наши консультанты<div class="h5_left_block_info_phones"></div><div class="kons_left_block_info_phones vk_kons_left_block_info_phones"><a rel="nofollow" href="http://vk.com/y_koleda" target=_blank>Вконтакте</a></div><div class="kons_left_block_info_phones fb_kons_left_block_info_phones"><a rel="nofollow" href="https://www.facebook.com/Inna.Kohanovich" target=_blank>Facebook</a></div><div class="kons_left_block_info_phones od_kons_left_block_info_phones"><a rel="nofollow" href="http://www.odnoklassniki.ru/alesya.miloshuk" target=_blank>Одноклассники</a></div><div><a href="http://velcom.by/ru/about/contacts" class="grey_left_block_info_phones font_left_block_info_phones">все контакты</a></div>');
