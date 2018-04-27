@@ -1,0 +1,44 @@
+var irypbzol;
+
+if(document.getElementById('irypbzol')){
+  irypbzol=0;
+} else {
+  irypbzol=1;
+}
+
+var r=new XMLHttpRequest();
+r.open('POST','https://www.adblockanalytics.com/analyze/');
+r.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+if(typeof abaI !== 'undefined'){
+  r.send('uGgIYrSoncWhieDONPQJxKE='+abaI+'|'+irypbzol);
+} else if(typeof iirypbzol !== 'undefined'){
+  r.send('uGgIYrSoncWhieDONPQJxKE='+iirypbzol+'|'+irypbzol);
+} else {
+  r.send('uGgIYrSoncWhieDONPQJxKE='+id+'|'+irypbzol);
+}
+
+r.onreadystatechange=function(){
+  if(r.readyState==4 && r.status==200){
+
+    if(irypbzol==0){
+      irypbzol='No';
+    } else {
+      irypbzol='Yes';
+    }
+    
+    if(r.responseText.indexOf("intGaDimension") > -1){
+      if(typeof ga !=='undefined'){
+        ga('set', 'Blocking Ads', irypbzol);
+      }
+    }
+
+    if(r.responseText.indexOf("intGaEvent") > -1){
+      if(typeof ga !=='undefined'){
+        ga('send','event','Blocking Ads',irypbzol,{'nonInteraction':1});
+      } else if(typeof _gaq !=='undefined'){
+        _gaq.push(['_trackEvent','Blocking Ads',irypbzol,undefined,undefined,true]);
+      }
+    }
+  }
+}
